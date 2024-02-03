@@ -46,3 +46,32 @@ def test_apply_discount(item_setup):
     item2.apply_discount()
     assert item1.price == 9000
     assert item2.price == 18000
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv('../src/items.csv')  # создание объектов из данных файла
+    assert len(Item.all) == 5  # в файле 5 записей с данными по товарам
+
+    expected_first_item_attributes = {
+        'name': 'Смартфон',  # Replace 'ExpectedName' with the actual expected name
+        'price': 100,  # Replace with the actual expected price
+        'quantity': 1  # Replace with the actual expected quantity
+    }
+
+    first_item = Item.all[0]
+    assert first_item.name == expected_first_item_attributes['name']
+    assert first_item.price == expected_first_item_attributes['price']
+    assert first_item.quantity == expected_first_item_attributes['quantity']
+
+def test_string_to_number():
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
+
+def test_name():
+    item = Item('InitialName', 100, 1)
+    item.name = "ahsgdausgfasugfuasgf"
+    assert len(item.name) <= 10
+
+    item.name = "akdds"
+    assert len(item.name) == 5
