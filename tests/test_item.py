@@ -4,6 +4,8 @@ from src.item import Item
 
 
 @pytest.fixture()
+
+
 def item_setup():
     item1 = Item("Смартфон", 10000, 20)
     item2 = Item("Ноутбук", 20000, 5)
