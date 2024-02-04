@@ -63,10 +63,12 @@ def test_instantiate_from_csv():
     assert first_item.price == expected_first_item_attributes['price']
     assert first_item.quantity == expected_first_item_attributes['quantity']
 
+
 def test_string_to_number():
     assert Item.string_to_number('5') == 5
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
+
 
 def test_name():
     item = Item('InitialName', 100, 1)
@@ -75,3 +77,15 @@ def test_name():
 
     item.name = "akdds"
     assert len(item.name) == 5
+
+
+def test_item_repr(item_setup):
+    item1, item2 = item_setup
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+    assert repr(item2) == "Item('Ноутбук', 20000, 5)"
+
+
+def test_item_str(item_setup):
+    item1, item2 = item_setup
+    assert str(item1) == 'Смартфон'
+    assert str(item2) == 'Ноутбук'
