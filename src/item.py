@@ -1,5 +1,4 @@
 import csv
-import os
 
 
 class Item:
@@ -26,6 +25,12 @@ class Item:
 
         # Добавляем созданный экземпляр в список всех товаров
         Item.all.append(self)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return self.__name
 
     @property
     def name(self):
@@ -64,4 +69,3 @@ class Item:
     def string_to_number(number_str):
         number = int(float(number_str))
         return number
-
