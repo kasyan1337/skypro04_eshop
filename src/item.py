@@ -32,16 +32,19 @@ class Item:
     def __str__(self):
         return self.__name
 
+    def __add__(self, other):
+        from src.phone import \
+            Phone  # Local import to avoid circular dependency (import error (most likely due to a circular import))
+        if isinstance(other, (Item, Phone)):
+            return self.quantity + other.quantity
+
     @property
     def name(self):
         return self.__name
 
     @name.setter
-    def name(self, name):
-        if len(name) < 10:
-            self.__name = name
-        else:
-            self.__name = name[:10]
+    def name(self, new_name):
+        self.__name = new_name[:10]
 
     def calculate_total_price(self) -> float:
         """
@@ -59,7 +62,6 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, file_path=None):
         cls.all = []
-        file_path = '../src/items.csv'
         with open(file_path, mode='r', encoding='windows-1251') as file:
             reader = csv.DictReader(file)
             for row in reader:
