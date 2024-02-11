@@ -33,9 +33,13 @@ class Item:
         return self.__name
 
     def __add__(self, other):
-        from src.phone import \
-            Phone  # Local import to avoid circular dependency (import error (most likely due to a circular import))
-        if isinstance(other, (Item, Phone)):
+        # from src.phone import \
+        #     Phone  # Local import to avoid circular dependency (import error (most likely due to a circular import))
+        # if isinstance(other, (Item, Phone)):
+        # В Item тебе не нужен Phone, чтоб проверить можно ли их складывать,
+        # достаточно проверить является ли other либо представителем Phone, либо его наследником
+
+        if isinstance(other, Item):
             return self.quantity + other.quantity
 
     @property
