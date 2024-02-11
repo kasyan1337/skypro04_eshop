@@ -3,10 +3,10 @@ from src.item import Item
 
 class LanguageMixin:
     def __init__(self, language='EN'):
-        self.__language = language  # in this instance is self._language or self.__language better?
+        self.__language = language
 
     def change_lang(self):
-        self.__language = 'RU' if self.__language == 'EN' else 'EN'  # Can this be done by using __slots__?
+        self.__language = 'RU' if self.__language == 'EN' else 'EN'
 
     @property
     def language(self):
