@@ -1,7 +1,7 @@
 import csv
+from abc import ABC, abstractmethod
 
-
-class Item:
+class Item(ABC):
     """
     Класс для представления товара в магазине.
     """
